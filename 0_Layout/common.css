@@ -1,0 +1,558 @@
+:root {
+  /* Color styles */
+  --gray--gray-50: rgba(250, 250, 250, 1);
+  --gray--gray-100: rgba(247, 250, 252, 1);
+  --gray--gray-200: rgba(237, 242, 247, 1);
+  --gray--gray-300: rgba(226, 232, 240, 1);
+  --gray--gray-400: rgba(203, 213, 224, 1);
+  --gray--gray-500: rgba(160, 174, 192, 1);
+  --gray--gray-600: rgba(113, 128, 150, 1);
+  --gray--gray-700: rgba(74, 85, 104, 1);
+  --gray--gray-800: rgba(45, 55, 72, 1);
+  --gray--gray-900: rgba(26, 32, 44, 1);
+  --brand--secondary-bg: rgba(247, 102, 128, 1);
+  --brand--dark-bg: rgba(22, 25, 44, 1);
+  --brand--info-bg: rgba(104, 219, 242, 1);
+  --brand--danger-bg: rgba(241, 96, 99, 1);
+  --brand--warning-bg: rgba(247, 147, 111, 1);
+  --brand--success-bg: rgba(102, 203, 159, 1);
+  --brand--tertiary-bg: rgba(255, 146, 174, 1);
+  --brand---primary-bg: rgba(87, 0, 123, 1);
+  --shade---primary-lite-bg: rgba(231, 218, 237, 1);
+  --shade---secondary-lite-bg: rgba(255, 231, 235, 1);
+  --shade--terriary-lite-bg: rgba(255, 173, 186, 1);
+  --shade--success-lite-bg: rgba(224, 255, 239, 1);
+  --shade---warning-ite-bg: rgba(255, 239, 232, 1);
+  --shade--danger-lite-bg: rgba(246, 142, 135, 1);
+  --shade--info-lite-bg: rgba(227, 252, 255, 1);
+  --shade--dark-lite-bg: rgba(80, 87, 128, 1);
+  --shade--light-background: rgba(249, 249, 255, 1);
+  --shade--pink-lite: rgba(255, 233, 233, 1);
+  --base---black: rgba(0, 0, 0, 1);
+  --base---white: rgba(255, 255, 255, 1);
+  --base---pink: rgba(142, 94, 250, 1);
+  --shades--lite-green: rgba(231, 254, 236, 1);
+
+  /* Text-size styles */
+  /* base size: menu-items (18px) */
+  --menu-items: 1rem;
+  --thumbnail: 0.89rem;
+  --nav-text: 0.78rem;
+  --button-text--btn-sm: 0.56rem;
+  --button-text--btn-base: 0.67rem;
+  --button-text--btn-lg: 0.78rem;
+  --paragraphs--para-1: 1rem;
+  --paragraphs--default: 0.78rem;
+  --paragraphs--default-lg: 1rem;
+  --headings---headings-h2: 1.94rem;
+  --headings---headings-h3: 1.56rem;
+  --headings---headings-h4: 1.11rem;
+  --headings---headings-h5: 1rem;
+  --headings---headings-h6: 0.89rem;
+  --headings---headings-sm: 0.78rem;
+  --headings---lite-h1: 2.5rem;
+  --headings--light-h2: 1.94rem;
+  --headings---headings-h5-900: 1rem;
+  --display---dilplay-h2-bold: 3.56rem;
+  --display---dilplay-h3-bold: 3.11rem;
+  --display---dilplay-h4-bold: 2.67rem;
+  --display---dilplay-h5-bold: 2.22rem;
+  --display---display---dilplay-h1-bold: 2.94rem;
+  --footer---footer-sm: 0.78rem;
+  --footer---footer-links: 0.89rem;
+
+  /* Effect styles */
+  --btn--shadow: 0px 4px 49px rgba(0, 0, 0, 0.15);
+  --card--shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
+  --card-shadow-lite: 0px 4px 30px rgba(0, 0, 0, 0.05);
+  --shadow---nav-shadown: 0px 4px 40px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  line-height: 2rem;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  height: 79px;
+  background-color: var(--base---white);
+  box-shadow: var(--shadow---nav-shadown);
+}
+
+main {
+  padding-top: 79px;
+}
+
+footer {
+}
+
+/* header */
+
+.header-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
+  width: 100%;
+  height: 100%;
+}
+
+.nav-bar {
+  height: 100%;
+}
+
+/* 
+  li 영역 hover할 때 글자 크기가 커지면서 비율 바뀌는 문제
+  gap이나 padding 대신 size fix 해두고?
+  */
+.nav-bar > ul {
+  display: flex;
+  align-items: center;
+  /* gap: 4rem; */
+  color: var(--gray--gray-700);
+  font-size: var(--nav-text);
+  height: 100%;
+}
+
+.nav-bar > ul > li {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 1.5rem;
+  /* width: 120px; */
+}
+
+.nav-bar > ul::after {
+}
+
+/* .nav-bar li {
+  position: relative;
+} */
+
+.nav-bar .sub-menu {
+  display: none;
+  position: fixed;
+  background-color: white;
+  top: 69px;
+  width: 80px;
+}
+
+.sub-menu > li {
+  padding-top: 14px;
+}
+
+.nav-bar > ul > li:hover {
+  color: var(--brand---primary-bg);
+  font-size: var(--headings---headings-h5);
+  font-weight: 800;
+}
+
+.nav-bar > ul > li:hover .sub-menu {
+  display: block;
+}
+
+.button {
+  padding: 0.2rem 1.2rem;
+  border-radius: 5px;
+  color: var(--gray--gray-50);
+  box-shadow: var(--btn--shadow);
+}
+
+.header-wrap > .button {
+  /* background: linear-gradient(to top right, rgb(57, 7, 89), rgb(240, 180, 40)); */
+  /* background: linear-gradient(to right top, #4d08bd, #af39ca, #ff8a00); */
+  background: linear-gradient(
+    to right top,
+    var(--brand---primary-bg),
+    var(--brand--secondary-bg)
+  );
+  color: var(--gray--gray-50);
+  font-size: var(--button-text--btn-lg);
+}
+
+.nav-bar > ul > li > a::after {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  height: 4px;
+  border-radius: 2px;
+  width: 2%;
+  background-color: var(--brand---primary-bg);
+  transition: 0.3s;
+  transform: translateX();
+  display: none;
+  z-index: 100;
+}
+
+.nav-bar > ul > li > a:hover::after {
+  display: block;
+}
+
+/* main */
+
+main section {
+  padding: 0 8%;
+  overflow: hidden;
+  position: relative;
+}
+
+.text-color {
+  /* color: var(--brand---primary-bg); */
+  background: linear-gradient(
+    to right top,
+    var(--brand---primary-bg),
+    var(--brand--secondary-bg)
+  );
+  color: transparent;
+  -webkit-background-clip: text;
+}
+
+/* section 1 */
+
+main section:nth-of-type(1) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main section:nth-of-type(1) div {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  color: var(--gray--gray-900);
+}
+
+main section:nth-of-type(1) h2 {
+  font-size: var(--headings---lite-h1);
+  line-height: 4rem;
+}
+
+main section:nth-of-type(1) h2 .bold {
+  font-size: var(--display---display---dilplay-h1-bold);
+  font-weight: 800;
+}
+
+main section:nth-of-type(1) p {
+  color: var(--gray--gray-700);
+  font-size: var(--paragraphs--default-lg);
+}
+
+main section:nth-of-type(1) .button {
+  width: 175px;
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--brand---primary-bg);
+  color: var(--gray--gray-50);
+  font-size: var(--button-text--btn-lg);
+}
+
+main section:nth-of-type(1) img {
+  width: 60%;
+  object-fit: contain;
+}
+
+main section:nth-of-type(1)::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  transform: translateY(36px);
+  left: 33%;
+  width: 72px;
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(
+    to right top,
+    var(--brand---primary-bg),
+    var(--brand--secondary-bg)
+  );
+
+  border-radius: 50%;
+}
+
+/* section 2 */
+
+main section:nth-of-type(2) {
+  padding-top: 46px;
+  background-color: var(--shade--light-background);
+  height: 602px;
+}
+
+main section:nth-of-type(2) > div {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+
+main section:nth-of-type(2) h2 {
+  color: var(--gray--gray-900);
+  font-size: var(--headings--light-h2);
+  display: block;
+  text-align: center;
+  font-weight: 600;
+}
+
+main section:nth-of-type(2) .section2-swiper {
+  margin-top: 80px;
+  height: 400px;
+  line-height: 1.5rem;
+}
+
+main section:nth-of-type(2) .swiper-slide {
+  height: 290px;
+  padding: 40px 15px;
+  box-shadow: var(--card-shadow-lite);
+  background-color: #fafafa;
+  border-radius: 7px;
+}
+
+main section:nth-of-type(2) .swiper-slide-active {
+  transition: 0.3s;
+  transform: translateY(50px);
+
+  border: 1.5px solid var(--brand--tertiary-bg);
+
+  /* 
+    border에 gradient 넣으려면 이미지 처럼 wrapper로 또 감싸거나
+    내부 요소들을 패딩 없이 포지션으로?
+   */
+  /* background: linear-gradient(#fafafa, #fafafa),
+    linear-gradient(
+      to right top,
+      var(--brand---primary-bg),
+      var(--brand--secondary-bg)
+    );
+  background-origin: border-box;
+  background-clip: content-box, border-box; */
+}
+
+main section:nth-of-type(2) .swiper-slide .img-wrapper {
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background: linear-gradient(#fafafa, #fafafa),
+    linear-gradient(
+      to right top,
+      var(--brand---primary-bg),
+      var(--brand--secondary-bg)
+    );
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  width: 58px;
+  height: 58px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main section:nth-of-type(2) .swiper-slide img {
+  width: 42px;
+  height: 42px;
+}
+
+main section:nth-of-type(2) .swiper-slide h3 {
+  font-size: var(--headings---headings-h4);
+  background: linear-gradient(
+    to right top,
+    var(--brand---primary-bg),
+    var(--brand--secondary-bg)
+  );
+  color: transparent;
+  -webkit-background-clip: text;
+  padding-top: 15px;
+}
+
+main section:nth-of-type(2) .swiper-slide p {
+  /* 글자 색 */
+  color: var(--gray--gray-700);
+  font-size: var(--paragraphs--default);
+  padding-top: 20px;
+}
+
+main section:nth-of-type(2) .swiper-pagination-bullets {
+  bottom: -3px;
+}
+
+main section:nth-of-type(2) .swiper-pagination-bullet {
+  width: 13px;
+  height: 13px;
+  background: transparent;
+  /* 색 잘 안보여서 명세보다 진한 border색 사용 */
+  border: 1px solid var(--gray--gray-700);
+}
+
+main section:nth-of-type(2) .swiper-pagination-bullet-active {
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(
+    to right top,
+    var(--brand---primary-bg),
+    var(--brand--secondary-bg)
+  );
+
+  border: transparent;
+  transform: translatey(2px);
+}
+
+/* section 3 */
+
+main section:nth-of-type(3) {
+  padding-top: 10%;
+  height: 850px;
+}
+
+main section:nth-of-type(3) > div:nth-of-type(1) {
+  display: flex;
+  justify-content: center;
+  gap: 10%;
+  /* align-items: center; */
+}
+
+main section:nth-of-type(3) > div:nth-of-type(1) > div {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+/* main section:nth-of-type(3) > div:nth-of-type(1) > div h2 {
+  margin-top: 20px;
+} */
+
+main section:nth-of-type(3) > div:nth-of-type(1) > div p {
+  font-size: var(--paragraphs--default-lg);
+  color: var(--gray--gray-600);
+}
+
+main section:nth-of-type(3) > div:nth-of-type(1) a {
+  display: block;
+  color: var(--brand---primary-bg);
+  margin-bottom: 20px;
+
+  position: relative;
+}
+
+main section:nth-of-type(3) > div:nth-of-type(1) > div a::after {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background-image: url("./image/Vector.png");
+  margin-left: 25px;
+  transform: translateY(3px);
+}
+
+main section:nth-of-type(3) > div:nth-of-type(2) {
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+main section:nth-of-type(3) > div:nth-of-type(2) > div {
+  transform: translateY(90px);
+  /* transform: translateY(20%); */
+}
+
+main section:nth-of-type(3) > div:nth-of-type(2) > div a {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+}
+
+main section:nth-of-type(3) > div:nth-of-type(2) a img {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+
+main section:nth-of-type(3) > div:nth-of-type(2) a:nth-of-type(2) img {
+  margin-left: 20px;
+  transform: scaleX(-1);
+}
+
+main section:nth-of-type(3) h2 {
+  font-size: var(--headings--light-h2);
+  color: var(--gray--gray-900);
+  line-height: 3rem;
+  position: relative;
+}
+
+main section:nth-of-type(3) h2 .bold {
+  font-size: var(--headings---headings-h2);
+  font-weight: 600;
+}
+
+main section:nth-of-type(3) h2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 4px;
+  transform: translateY(-20px);
+  background: linear-gradient(
+    to right top,
+    var(--brand---primary-bg),
+    var(--brand--secondary-bg)
+  );
+}
+
+main section:nth-of-type(3) div:nth-of-type(1) img {
+  width: 45%;
+  object-fit: scale-down;
+}
+
+main section:nth-of-type(3)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  transform: translateY(-36px);
+  left: 10%;
+  width: 72px;
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(
+    to right top,
+    var(--brand---primary-bg),
+    var(--brand--secondary-bg)
+  );
+
+  border-radius: 50%;
+}
+
+main section:nth-of-type(3)::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  transform: translateY(36px);
+  left: 55%;
+  width: 72px;
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(
+    to right top,
+    var(--brand---primary-bg),
+    var(--brand--secondary-bg)
+  );
+
+  border-radius: 50%;
+}
+
+/* section 4 */
+
+main section:nth-of-type(4) {
+  padding-top: 46px;
+  background-color: var(--shade--light-background);
+  height: 250px;
+}
+
+@media (max-width: 1000px) {
+  .nav-bar {
+    display: none;
+  }
+  .section2-swiper .swiper-slide {
+    width: 50%;
+  }
+}
