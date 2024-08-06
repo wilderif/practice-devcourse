@@ -4,7 +4,6 @@ const amountOne = document.getElementById("amount-one");
 const amountTwo = document.getElementById("amount-two");
 const swapButton = document.getElementById("swap");
 const displayedRate = document.querySelector("#rate p");
-console.log(displayedRate);
 
 let exchangeRates = {};
 
@@ -14,16 +13,6 @@ const fetchData = async () => {
   exchangeRates = { ...data.rates };
 };
 
-// calculate 부분 dom 변경 부분 분리할 것 (calculateRate기능 사용)
-const calculate = () => {
-  const amountOneValue = amountOne.value;
-  const rateOne = exchangeRates[currencyOne.value];
-  const rateTwo = exchangeRates[currencyTwo.value];
-
-  const amountTwoValue = (amountOneValue * rateTwo) / rateOne;
-  amountTwo.value = amountTwoValue.toFixed(2);
-};
-
 const calculateRate = () => {
   const rateOne = exchangeRates[currencyOne.value];
   const rateTwo = exchangeRates[currencyTwo.value];
@@ -31,11 +20,31 @@ const calculateRate = () => {
   return rateTwo / rateOne;
 };
 
+const calculateAmount = () => {
+  const amountOneValue = amountOne.value;
+  const curRate = calculateRate();
+
+  return amountOneValue * curRate;
+};
+
 const updateDisplayedRate = () => {
   displayedRate.textContent = `${1} ${currencyOne.value} = ${calculateRate()} ${
     currencyTwo.value
   }`;
 };
+
+amountOne.addEventListener("input", () => {
+  amountTwoValue = calculateAmount();
+  console.log(amountOne.value);
+
+  amountTwo.value = amountTwoValue.toFixed(2);
+});
+
+amountOne.addEventListener("change", () => {
+  amountOne.value = parseFloat(amountOne.value).toFixed(2);
+});
+
+// select가 바뀔 때, updateDisplayedRate, calculateAmount  실행
 
 swapButton.addEventListener("click", () => {
   let tmp = [currencyOne.value, amountOne.value];
@@ -51,6 +60,8 @@ const init = async () => {
     currencyOne.innerHTML += inner;
     currencyTwo.innerHTML += inner;
   }
+  amountOne.value = parseFloat(amountOne.value).toFixed(2);
+  amountTwo.value = parseFloat(amountTwo.value).toFixed(2);
   updateDisplayedRate();
 };
 
