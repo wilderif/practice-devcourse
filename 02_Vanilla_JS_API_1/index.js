@@ -19,14 +19,12 @@ const calculate = () => {
 
   const amountTwoValue = (amountOneValue * rateTwo) / rateOne;
   amountTwo.value = amountTwoValue.toFixed(2);
-
-  console.log(amountTwo);
-  console.log(amountOneValue, rateOne, rateTwo);
-  console.log(amountTwoValue);
 };
 
 swapButton.addEventListener("click", () => {
-  calculate();
+  let tmp = [currencyOne.value, amountOne.value];
+  [currencyOne.value, amountOne.value] = [currencyTwo.value, amountTwo.value];
+  [currencyTwo.value, amountTwo.value] = tmp;
 });
 
 const init = async () => {
