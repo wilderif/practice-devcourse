@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Currency Converter</title>
+    <script src="./index.js" defer></script>
+  </head>
+  <body>
+    <main class="wrap">
+      <h1>Currency Converter</h1>
+      <div class="con">
+        <div class="currency">
+          <p>Amount</p>
+          <select name="currency-one" id="currency-one"></select>
+          <input type="number" id="amount-one" value="1" />
+        </div>
+        <div class="currency">
+          <p>Converted Amount</p>
+          <select name="currency-two" id="currency-two"></select>
+          <input type="number" id="amount-two" value="1" />
+        </div>
+        <button id="swap">Swap</button>
+      </div>
+      <div id="rate">
+        <p>표시 환율</p>
+      </div>
+    </main>
+  </body>
+</html>
