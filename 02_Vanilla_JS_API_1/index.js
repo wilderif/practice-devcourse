@@ -33,10 +33,17 @@ const updateDisplayedRate = () => {
   }`;
 };
 
+amountOne.addEventListener("focus", () => {
+  amountOne.value = "";
+});
+
 amountOne.addEventListener("input", () => {
   amountTwoValue = calculateAmount();
-  console.log(amountOne.value);
+  amountTwo.value = amountTwoValue.toFixed(2);
+});
 
+amountOne.addEventListener("input", () => {
+  amountTwoValue = calculateAmount();
   amountTwo.value = amountTwoValue.toFixed(2);
 });
 
@@ -45,6 +52,17 @@ amountOne.addEventListener("change", () => {
 });
 
 // select가 바뀔 때, updateDisplayedRate, calculateAmount  실행
+currencyOne.addEventListener("change", () => {
+  amountTwoValue = calculateAmount();
+  amountTwo.value = amountTwoValue.toFixed(2);
+  updateDisplayedRate();
+});
+
+currencyTwo.addEventListener("change", () => {
+  amountTwoValue = calculateAmount();
+  amountTwo.value = amountTwoValue.toFixed(2);
+  updateDisplayedRate();
+});
 
 swapButton.addEventListener("click", () => {
   let tmp = [currencyOne.value, amountOne.value];
