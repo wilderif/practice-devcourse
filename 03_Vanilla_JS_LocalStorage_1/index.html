@@ -3,8 +3,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Flash Card</title>
+    <link rel="stylesheet" href="index.css" />
     <script src="index.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <main>
+      <section class="container">
+        <div class="container-header">
+          <h1>암기를 재미있게! 플래쉬 카드</h1>
+          <button id="add-card-btn">항목 추가</button>
+        </div>
+        <div id="card-container"></div>
+        <div class="card-navigation">
+          <button id="prev-btn">이전</button>
+          <span id="card-count">0/0</span>
+          <button id="next-btn">다음</button>
+        </div>
+        <button id="clear-btn">모든 기록 삭제</button>
+      </section>
+
+      <div class="modal">
+        <div class="modal-content">
+          <span class="close-btn">&times;</span>
+          <h2>새로운 항목 추가</h2>
+          <button>닫기</button>
+          <form id="add-card-form">
+            <label for="question">질문</label>
+            <input
+              type="text"
+              id="question"
+              placeholder="질문을 적어주세요"
+              required
+            />
+            <label for="answer">답변</label>
+            <input
+              type="text"
+              id="answer"
+              placeholder="내용을 적어주세요"
+              required
+            />
+            <button type="submit">추가하기</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>
