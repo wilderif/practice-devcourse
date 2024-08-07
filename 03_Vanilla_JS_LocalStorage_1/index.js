@@ -16,11 +16,13 @@ let cards = JSON.parse(localStorage.getItem("cards")) || [];
 let curCardIdx = 0;
 
 const updateCardCount = () => {
-  if (cards.length) {
-    cardCount.textContent = `${curCardIdx + 1} / ${cards.length}`;
-  } else {
-    cardCount.textContent = `${0} / ${0}`;
-  }
+  // if (cards.length) {
+  //   cardCount.textContent = `${curCardIdx + 1} / ${cards.length}`;
+  // } else {
+  //   cardCount.textContent = `${0} / ${0}`;
+  // }
+
+  cardCount.textContent = `${curCardIdx + 1} / ${cards.length}`;
 };
 
 // 새로운 카드 localStorage에 저장하는 함수
@@ -31,7 +33,8 @@ const addCard = (question, answer) => {
 
 // 카드 div 생성 및 addEventListener
 // index를 parameter로 받아서 활용하도록 수정
-const createCard = (idx) => {
+const createCard = (idx, isMid) => {
+  console.log(idx);
   const newCard = document.createElement("div");
   newCard.className = "card";
   newCard.innerHTML = `
@@ -45,11 +48,12 @@ const createCard = (idx) => {
       </div>
     `;
   cardContainer.appendChild(newCard);
-  updateCardCount();
 
-  newCard.addEventListener("click", () => {
-    newCard.classList.toggle("flipped");
-  });
+  if (isMid) {
+    newCard.addEventListener("click", () => {
+      newCard.classList.toggle("flipped");
+    });
+  }
 };
 
 // 현재 index -1 ~ +1 까지 화면에 랜더링 하고,
@@ -64,13 +68,18 @@ const renderCard = (curIdx) => {
   // } else if (cards.length == 1) {
   // }
 
-  for (let i = 0; i < 3; i++) {
-    createCard(curIdx + (i % cards.length));
+  for (let i = -1; i < 2; i++) {
+    if (i == 0) {
+      createCard((curIdx + i + cards.length) % cards.length, true);
+    } else {
+      createCard((curIdx + i + cards.length) % cards.length, false);
+    }
   }
+  updateCardCount();
 };
 
 // 다음 카드 이전 카드 눌렀을 때도 적용
-// flag로 방향 설정
+// flag가 true이면 왼쪽 이동, flag가 false이면 오른쪽 이동
 const move = (flag) => {
   cardContainer.style.transition = "transform 0.6s ease";
   cardContainer.style.transform = flag
@@ -81,13 +90,13 @@ const move = (flag) => {
     cardContainer.style.transition = "none";
     cardContainer.style.transform = "translateX(calc(100% / -3))";
 
-    // 조건문 내부에 Index 업데이트 추가할 것
-    // Index만 변경하고 renderCard 함수 사용하는 방법으로 수정
     if (flag) {
       curCardIdx = (curCardIdx + 1) % cards.length;
+      console.log(flag, curCardIdx);
       renderCard(curCardIdx);
     } else {
       curCardIdx = (curCardIdx - 1 + cards.length) % cards.length;
+      console.log(flag, curCardIdx);
       renderCard(curCardIdx);
     }
   }, 600);
@@ -115,7 +124,7 @@ addCardForm.addEventListener("submit", (event) => {
   if (!question || !answer) return;
 
   addCard(question, answer);
-  curCardIdx++;
+  curCardIdx = cards.length - 1;
   renderCard(curCardIdx);
   handleCloseModal();
 });
@@ -132,6 +141,13 @@ clearBtn.addEventListener("click", () => {
   localStorage.removeItem("cards");
   cards = [];
   renderCard(-1);
-  curCardIdx = 0;
+  curCardIdx = -1;
   updateCardCount();
 });
+
+const init = () => {
+  renderCard(curCardIdx);
+  updateCardCount();
+};
+
+init();

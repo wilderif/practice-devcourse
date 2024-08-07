@@ -13,13 +13,13 @@ body {
 }
 
 main {
-  width: 50%;
+  width: 40%;
   /* margin: 0 auto; */
   padding: 2rem;
 }
 
 .container {
-  border: solid 1px red;
+  border: solid 1px lightgray;
 
   border-radius: 8px;
   padding: 20px;
@@ -49,7 +49,7 @@ button:active {
 /* card container */
 
 .card-container {
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   position: relative;
   display: flex;
   /* overflow: hidden; */
@@ -60,7 +60,7 @@ button:active {
 }
 
 .card {
-  border: 1px solid orangered;
+  border: 2px solid lightgray;
   width: calc(100% / 3);
   /* height: 100%; */
   position: relative;
