@@ -13,31 +13,59 @@ const cards = JSON.parse(localStorage.getItem("cards")) || [];
 // 현재 인덱스도 스토리지에 저장해볼 것
 let curCardIdx = 0;
 
-// 카드 div 생성 및 addEventListener
-const createCard = () => {
-  // cardContainer.innerHTML = "";
-  console.log(cardContainer);
+const updateCardCount = () => {
+  if (cards.length) {
+    cardCount.textContent = `${curCardIdx + 1} / ${cards.length}`;
+  } else {
+    cardCount.textContent = `${0} / ${0}`;
+  }
+};
 
+// 카드 div 생성 및 addEventListener
+// "클릭하면 뒤집혀요" 추가할 것
+const createCard = () => {
   const newCard = document.createElement("div");
   newCard.className = "card";
   newCard.innerHTML = `
-      <div class="front">${cards[curCardIdx].question}</div>
-      <div class="back">${cards[curCardIdx].answer}</div>
+      <div class="front">
+        <p>클릭하면 뒤집혀요</p>
+        <p>${cards[curCardIdx].question}</p>
+      </div>
+      <div class="back">
+        <p>클릭하면 뒤집혀요</p>
+        <p>${cards[curCardIdx].answer}</p>
+      </div>
     `;
   cardContainer.appendChild(newCard);
-  cardCount.textContent = `${curCardIdx + 1} / ${cards.length}`;
+  updateCardCount();
 
   newCard.addEventListener("click", () => {
     newCard.classList.toggle("flipped");
   });
 };
 
-const renderCard = () => {};
+// 현재 index -1 ~ +1 까지 화면에 랜더링 하고,
+// 현재 index가 가운데 오도록
+const renderCard = () => {
+  if (cards.length >= 3) {
+  } else if (cards.length == 2) {
+  } else if (cards.length == 1) {
+  } else {
+  }
+};
+
+// 다음 카드 이전 카드 눌렀을 때도 적용
+const moveLeft = () => {};
+const moveRight = () => {};
+
+const move = () => {};
 
 modalOpenBtn.addEventListener("click", () => {
   modal.style.display = "block";
 });
 
+// modal content 바깥 부분 눌렀을 때도 같은 동작 하도록 추가해볼 것
+// 모달 닫는 동작 함수로 따로 분리
 modalCloseBtn.addEventListener("click", () => {
   addCardForm.reset();
   modal.style.display = "none";
@@ -56,23 +84,13 @@ addCardForm.addEventListener("submit", (event) => {
   }
 });
 
-prevBtn.addEventListener("click", () => {
-  if (cards.length > 0) {
-    curCardIdx = (curCardIdx - 1 + cards.length) % cards.length;
-    renderCard();
-  }
-});
+prevBtn.addEventListener("click", moveRight);
 
-nextBtn.addEventListener("click", () => {
-  if (cards.length > 0) {
-    currentCardIcurCardIdxndex = (curCardIdx + 1) % cards.length;
-    renderCard();
-  }
-});
+nextBtn.addEventListener("click", moveLeft);
 
 clearBtn.addEventListener("click", () => {
   localStorage.removeItem("cards");
   cards = [];
-  cardCount.textContent = `${0} / ${0}`;
   curCardIdx = 0;
+  updateCardCount();
 });
