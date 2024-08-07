@@ -33,6 +33,7 @@ const addCard = (question, answer) => {
 
 // 카드 div 생성 및 addEventListener
 // index를 parameter로 받아서 활용하도록 수정
+// 가운데 요소만 flip되도록 event listener 추가
 const createCard = (idx, isMid) => {
   console.log(idx);
   const newCard = document.createElement("div");
@@ -111,10 +112,15 @@ modalOpenBtn.addEventListener("click", () => {
   modal.style.display = "block";
 });
 
-// modal content 바깥 부분 눌렀을 때도 같은 동작 하도록 추가해볼 것
-// 모달 닫는 동작 함수로 따로 분리
 modalCloseBtn.addEventListener("click", () => {
   handleCloseModal();
+});
+
+// modal content 바깥 부분 눌렀을 때 모달 닫는 기능
+modal.addEventListener("click", (event) => {
+  if (event.target === modal) {
+    handleCloseModal();
+  }
 });
 
 addCardForm.addEventListener("submit", (event) => {
