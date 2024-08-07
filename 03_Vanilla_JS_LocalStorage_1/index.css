@@ -30,7 +30,7 @@ button {
   background-color: white;
   margin: 1px solid black;
   cursor: pointer;
-  padding: 0.1rem 1rem;
+  padding: 0.3rem 1rem;
   border-radius: 0.5rem;
 }
 
@@ -102,6 +102,8 @@ button#clear-btn {
   margin-top: 20px;
 }
 
+/* modal */
+
 .modal {
   display: none;
   position: fixed;
@@ -110,57 +112,42 @@ button#clear-btn {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .modal-content {
-  background-color: #fefefe;
-  margin: 5% auto;
+  background-color: lightgray;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  margin: 10% auto;
   padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  max-width: 500px;
-  border-radius: 8px;
+  width: 50%;
 }
 
-.close-btn {
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
+.modal label,
+.modal button {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
-form {
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal form {
   display: flex;
   flex-direction: column;
 }
 
-label,
-input,
-button {
-  margin: 10px 0;
+.modal input {
+  padding: 1rem;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  height: 100px;
 }
 
-input {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-button[type="submit"],
-button.close-btn {
-  background-color: #007bff;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-button[type="submit"]:hover,
-button.close-btn:hover {
-  opacity: 0.9;
+.modal form button {
+  width: 7rem;
 }

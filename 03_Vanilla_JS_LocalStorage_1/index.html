@@ -17,7 +17,7 @@
         <div id="card-container"></div>
         <div class="card-navigation">
           <button id="prev-btn">이전</button>
-          <span id="card-count">0/0</span>
+          <span id="card-count">0 / 0</span>
           <button id="next-btn">다음</button>
         </div>
         <button id="clear-btn">모든 기록 삭제</button>
@@ -25,9 +25,10 @@
 
       <div class="modal">
         <div class="modal-content">
-          <span class="close-btn">&times;</span>
-          <h2>새로운 항목 추가</h2>
-          <button>닫기</button>
+          <div class="modal-header">
+            <h2>새로운 항목 추가</h2>
+            <button id="modal-close">닫기</button>
+          </div>
           <form id="add-card-form">
             <label for="question">질문</label>
             <input
