@@ -21,8 +21,11 @@ const updateCardCount = () => {
   }
 };
 
+// 새로운 카드 localStorage에 저장하는 함수
+const addCard = () => {};
+
 // 카드 div 생성 및 addEventListener
-// "클릭하면 뒤집혀요" 추가할 것
+// index를 parameter로 받아서 활용하도록 수정
 const createCard = () => {
   const newCard = document.createElement("div");
   newCard.className = "card";
@@ -47,18 +50,37 @@ const createCard = () => {
 // 현재 index -1 ~ +1 까지 화면에 랜더링 하고,
 // 현재 index가 가운데 오도록
 const renderCard = () => {
+  cardContainer.innerHTML = "";
   if (cards.length >= 3) {
   } else if (cards.length == 2) {
   } else if (cards.length == 1) {
-  } else {
   }
 };
 
 // 다음 카드 이전 카드 눌렀을 때도 적용
-const moveLeft = () => {};
-const moveRight = () => {};
+// flag로 방향 설정
+const move = (flag) => {
+  cardContainer.style.transition = "transform 0.6s ease";
+  cardContainer.style.transform = flag
+    ? "translateX(calc(100% / -3 * 2))"
+    : "translateX(0)";
 
-const move = () => {};
+  setTimeout(() => {
+    cardContainer.style.transition = "none";
+    cardContainer.style.transform = "translateX(calc(100% / -3))";
+
+    // 조건문 내부에 Index 업데이트 추가할 것
+    // element 붙이는 방식 아닌 제거하고 다음 Index 추가하는 방식으로
+    // Index만 변경하고 renderCard 함수 사용하는 방법으로 수정
+    if (flag) {
+      const firstCard = cardContainer.firstElementChild;
+      slideContainer.appendChild(firstCard);
+    } else {
+      const lastCard = cardContainer.lastElementChild;
+      slideContainer.prepend(lastCard);
+    }
+  }, 600);
+};
 
 modalOpenBtn.addEventListener("click", () => {
   modal.style.display = "block";
@@ -84,13 +106,18 @@ addCardForm.addEventListener("submit", (event) => {
   }
 });
 
-prevBtn.addEventListener("click", moveRight);
+prevBtn.addEventListener("click", () => {
+  move(false);
+});
 
-nextBtn.addEventListener("click", moveLeft);
+nextBtn.addEventListener("click", () => {
+  move(true);
+});
 
 clearBtn.addEventListener("click", () => {
   localStorage.removeItem("cards");
   cards = [];
+  renderCard();
   curCardIdx = 0;
   updateCardCount();
 });
