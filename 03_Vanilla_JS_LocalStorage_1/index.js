@@ -1,6 +1,11 @@
 // localStorage의 data와 cards 변수의 데이터 동기화 시점 전부 다시 확인할 것
 // 카드 없을 떼 curCardIdx -1로 처리할지 0으로 처리할지 다시 고민해볼 것
 
+// 3개씩 항상 다시 랜더링하지 않고
+// 1. 전부 li로 만들고 화면에만 반영하는 방법
+// 2. 기존에 반영된 div는 유지및 event listener만 변경, 화면에 추가될 카드만 새로 생성(virtual dom처럼?)
+// 두 방법 중 한가지로 바꿔야 성능 개선될 듯?
+
 const modal = document.querySelector(".modal");
 const modalOpenBtn = document.getElementById("add-card-btn");
 const modalCloseBtn = document.getElementById("modal-close");
