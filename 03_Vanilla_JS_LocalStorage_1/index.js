@@ -1,4 +1,5 @@
 // localStorage의 data와 cards 변수의 데이터 동기화 시점 전부 다시 확인할 것
+// 카드 없을 떼 curCardIdx -1로 처리할지 0으로 처리할지 다시 고민해볼 것
 
 const modal = document.querySelector(".modal");
 const modalOpenBtn = document.getElementById("add-card-btn");
@@ -34,6 +35,7 @@ const addCard = (question, answer) => {
 // 카드 div 생성 및 addEventListener
 // index를 parameter로 받아서 활용하도록 수정
 // 가운데 요소만 flip되도록 event listener 추가
+// index -1 카드, index + 1 카드에도 event listener에 move 함수 적용해볼 것
 const createCard = (idx, isMid) => {
   console.log(idx);
   const newCard = document.createElement("div");
