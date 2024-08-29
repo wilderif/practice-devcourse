@@ -5,7 +5,7 @@ loader.innerHTML = `
             <span></span>
             <span></span>
         `;
-document.querySelector(".wrap")?.appendChild(loader);
+document.querySelector(".wrap")!.appendChild(loader);
 
 function customQuerySelector<T extends HTMLElement>(
   selector: string
@@ -15,6 +15,12 @@ function customQuerySelector<T extends HTMLElement>(
   }
   return document.querySelector(selector);
 }
+
+// function customQuerySelector<T extends Element>(selector: string): T | null {
+//   // 아래 두개의 querySelector generic type이 다름 return 다음에는 T로 추론
+//   const tmp = document.querySelector(selector);
+//   return document.querySelector(selector);
+// }
 
 const elements = {
   $postsCon: customQuerySelector<HTMLUListElement>("#posts-con")!,
@@ -42,7 +48,7 @@ const getPosts = async (searchTerm = ""): Promise<Post[]> => {
     url += `&q=${encodeURIComponent(searchTerm)}`;
   }
   const res = await fetch(url);
-  const data = await res.json();
+  const data: Post[] = await res.json();
 
   // 데이터가 0일 때
   if (data.length === 0) {
