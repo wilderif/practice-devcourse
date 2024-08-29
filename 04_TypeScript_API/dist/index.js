@@ -27,10 +27,10 @@ const optionList = () => __awaiter(void 0, void 0, void 0, function* () {
         const option2 = document.createElement("option");
         option1.value = key;
         option1.innerText = key;
-        option1.setAttribute("data-rate", list[key]);
+        option1.setAttribute("data-rate", list[key].toString());
         option2.value = key;
         option2.innerText = key;
-        option2.setAttribute("data-rate", list[key]);
+        option2.setAttribute("data-rate", list[key].toString());
         currencyEl_one.appendChild(option1);
         currencyEl_two.appendChild(option2);
         if (key === "USD") {

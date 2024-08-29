@@ -9,14 +9,18 @@ const amountEl_two = document.getElementById("amount-two") as HTMLInputElement;
 const rateEl = document.getElementById("rate") as HTMLDivElement;
 const swap = document.getElementById("swap") as HTMLButtonElement;
 
-const getList = async () => {
+interface Rates {
+  [key: string]: number;
+}
+
+const getList = async (): Promise<Rates> => {
   const res = await fetch("https://open.exchangerate-api.com/v6/latest");
   const rates = await res.json();
-  const list = rates.rates;
+  const list: Rates = rates.rates;
   return list;
 };
 
-const optionList = async () => {
+const optionList = async (): Promise<void> => {
   const list = await getList();
   for (let key in list) {
     const option1 = document.createElement("option");
@@ -24,11 +28,11 @@ const optionList = async () => {
 
     option1.value = key;
     option1.innerText = key;
-    option1.setAttribute("data-rate", list[key]);
+    option1.setAttribute("data-rate", list[key].toString());
 
     option2.value = key;
     option2.innerText = key;
-    option2.setAttribute("data-rate", list[key]);
+    option2.setAttribute("data-rate", list[key].toString());
 
     currencyEl_one.appendChild(option1);
     currencyEl_two.appendChild(option2);
@@ -46,7 +50,7 @@ const optionList = async () => {
 
 optionList();
 
-const calculate = () => {
+const calculate = (): void => {
   const currency_one = currencyEl_one.value;
   const currency_two = currencyEl_two.value;
 
