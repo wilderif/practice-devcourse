@@ -1,13 +1,17 @@
-const currencyEl_one = document.getElementById(
-  "currency-one"
-) as HTMLSelectElement;
-const amountEl_one = document.getElementById("amount-one") as HTMLInputElement;
-const currencyEl_two = document.getElementById(
-  "currency-two"
-) as HTMLSelectElement;
-const amountEl_two = document.getElementById("amount-two") as HTMLInputElement;
-const rateEl = document.getElementById("rate") as HTMLDivElement;
-const swap = document.getElementById("swap") as HTMLButtonElement;
+function customGetElementById<T extends HTMLElement>(
+  selector: string
+): T | null {
+  return document.querySelector(selector);
+}
+
+const elements = {
+  currencyEl_one: customGetElementById<HTMLSelectElement>("#currency-one")!,
+  amountEl_one: customGetElementById<HTMLInputElement>("#amount-one")!,
+  currencyEl_two: customGetElementById<HTMLSelectElement>("#currency-two")!,
+  amountEl_two: customGetElementById<HTMLInputElement>("#amount-two")!,
+  rateEl: customGetElementById<HTMLDivElement>("#rate")!,
+  swap: customGetElementById<HTMLButtonElement>("#swap")!,
+};
 
 interface Rates {
   [key: string]: number;
@@ -34,8 +38,8 @@ const optionList = async (): Promise<void> => {
     option2.innerText = key;
     option2.setAttribute("data-rate", list[key].toString());
 
-    currencyEl_one.appendChild(option1);
-    currencyEl_two.appendChild(option2);
+    elements.currencyEl_one.appendChild(option1);
+    elements.currencyEl_two.appendChild(option2);
 
     if (key === "USD") {
       option1.selected = true;
@@ -51,40 +55,43 @@ const optionList = async (): Promise<void> => {
 optionList();
 
 const calculate = (): void => {
-  const currency_one = currencyEl_one.value;
-  const currency_two = currencyEl_two.value;
+  const currency_one = elements.currencyEl_one.value;
+  const currency_two = elements.currencyEl_two.value;
 
   const rate_one = parseFloat(
-    currencyEl_one.options[currencyEl_one.selectedIndex].getAttribute(
-      "data-rate"
-    )!
+    elements.currencyEl_one.options[
+      elements.currencyEl_one.selectedIndex
+    ].getAttribute("data-rate")!
   );
-
   const rate_two = parseFloat(
-    currencyEl_two.options[currencyEl_two.selectedIndex].getAttribute(
-      "data-rate"
-    )!
+    elements.currencyEl_two.options[
+      elements.currencyEl_two.selectedIndex
+    ].getAttribute("data-rate")!
   );
 
   const rate = rate_two / rate_one;
-  rateEl.innerText = `1 ${currency_one} = ${rate.toFixed(4)} ${currency_two}`;
+  elements.rateEl.innerText = `1 ${currency_one} = ${rate.toFixed(
+    4
+  )} ${currency_two}`;
 
-  amountEl_two.value = (parseFloat(amountEl_one.value) * rate).toFixed(2);
+  elements.amountEl_two.value = (
+    parseFloat(elements.amountEl_one.value) * rate
+  ).toFixed(2);
 };
 
-currencyEl_one.addEventListener("change", calculate);
-amountEl_one.addEventListener("input", calculate);
-currencyEl_two.addEventListener("change", calculate);
-amountEl_two.addEventListener("input", calculate);
+elements.currencyEl_one.addEventListener("change", calculate);
+elements.amountEl_one.addEventListener("input", calculate);
+elements.currencyEl_two.addEventListener("change", calculate);
+elements.amountEl_two.addEventListener("input", calculate);
 
-swap.addEventListener("click", () => {
-  const temp = currencyEl_one.value;
-  currencyEl_one.value = currencyEl_two.value;
-  currencyEl_two.value = temp;
+elements.swap.addEventListener("click", () => {
+  const temp = elements.currencyEl_one.value;
+  elements.currencyEl_one.value = elements.currencyEl_two.value;
+  elements.currencyEl_two.value = temp;
 
-  const tempAmount = amountEl_one.value;
-  amountEl_one.value = amountEl_two.value;
-  amountEl_two.value = tempAmount;
+  const tempAmount = elements.amountEl_one.value;
+  elements.amountEl_one.value = elements.amountEl_two.value;
+  elements.amountEl_two.value = tempAmount;
 
   calculate();
 });
