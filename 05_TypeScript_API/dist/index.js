@@ -16,17 +16,17 @@ loader.innerHTML = `
             <span></span>
         `;
 document.querySelector(".wrap").appendChild(loader);
-// function customQuerySelector<T extends HTMLElement>(
-//   selector: string
-// ): T | null {
-//   if (selector.startsWith("#")) {
-//     return document.getElementById(selector.slice(1)) as T | null;
-//   }
+function customQuerySelector(selector) {
+    if (selector.startsWith("#")) {
+        return document.getElementById(selector.slice(1));
+    }
+    return document.querySelector(selector);
+}
+// function customQuerySelector<T extends Element>(selector: string): T | null {
+//   // 아래 두개의 querySelector generic type이 다름 return 다음에는 T로 추론
+//   const tmp = document.querySelector(selector);
 //   return document.querySelector(selector);
 // }
-function customQuerySelector(selector) {
-    return document.getElementById(selector);
-}
 const elements = {
     $postsCon: customQuerySelector("#posts-con"),
     $loader: customQuerySelector(".loader"),
