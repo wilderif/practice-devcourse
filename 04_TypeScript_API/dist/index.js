@@ -51,8 +51,8 @@ optionList();
 const calculate = () => {
     const currency_one = elements.currencyEl_one.value;
     const currency_two = elements.currencyEl_two.value;
-    const rate_one = parseFloat(elements.currencyEl_one.options[elements.currencyEl_one.selectedIndex].getAttribute("data-rate"));
-    const rate_two = parseFloat(elements.currencyEl_two.options[elements.currencyEl_two.selectedIndex].getAttribute("data-rate"));
+    const rate_one = parseFloat(elements.currencyEl_one.options[elements.currencyEl_one.selectedIndex].getAttribute("data-rate") || "1");
+    const rate_two = parseFloat(elements.currencyEl_two.options[elements.currencyEl_two.selectedIndex].getAttribute("data-rate") || "1");
     const rate = rate_two / rate_one;
     elements.rateEl.innerText = `1 ${currency_one} = ${rate.toFixed(4)} ${currency_two}`;
     elements.amountEl_two.value = (parseFloat(elements.amountEl_one.value) * rate).toFixed(2);

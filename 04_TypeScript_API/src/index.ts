@@ -61,12 +61,12 @@ const calculate = (): void => {
   const rate_one = parseFloat(
     elements.currencyEl_one.options[
       elements.currencyEl_one.selectedIndex
-    ].getAttribute("data-rate")!
+    ].getAttribute("data-rate") || "1"
   );
   const rate_two = parseFloat(
     elements.currencyEl_two.options[
       elements.currencyEl_two.selectedIndex
-    ].getAttribute("data-rate")!
+    ].getAttribute("data-rate") || "1"
   );
 
   const rate = rate_two / rate_one;
