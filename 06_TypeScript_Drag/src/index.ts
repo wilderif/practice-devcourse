@@ -6,9 +6,10 @@ interface Draggable {
   dropHandler(event: DragEvent): void;
 }
 
-let dragTarget = -1;
-
 class DraggableNode implements Draggable {
+  private static dragSrc: HTMLLIElement | null = null;
+  private static dragDest: HTMLLIElement | null = null;
+
   constructor(private liElement: HTMLLIElement) {
     this.configure();
   }
@@ -27,32 +28,59 @@ class DraggableNode implements Draggable {
   }
 
   dragStartHandler(event: DragEvent): void {
-    console.log(this.liElement.innerText);
+    // console.log(this.liElement.innerText);
     this.liElement.classList.add("dragging");
+    DraggableNode.dragSrc = this.liElement;
   }
 
   dragEndHandler(event: DragEvent): void {
-    console.log(this.liElement.innerText);
+    // console.log(this.liElement.innerText);
     this.liElement.classList.remove("dragging");
+    DraggableNode.dragSrc = null;
   }
 
   dragOverHandler(event: DragEvent): void {
-    console.log(this.liElement.innerText);
+    // console.log(this.liElement.innerText);
     // drop 허용하기 위하여?
     event.preventDefault();
-    // dragTarget =;
+    DraggableNode.dragDest = this.liElement;
   }
 
-  dragLeaveHandler(event: DragEvent): void {}
+  dragLeaveHandler(event: DragEvent): void {
+    DraggableNode.dragDest = null;
+  }
 
+  // 드래그 로직 다시 수정할 것
+  // 교환할 것인지, 밀어낼 것인지
   dropHandler(event: DragEvent): void {
     event.preventDefault();
+    console.log(DraggableNode.dragSrc?.innerHTML);
+    console.log(DraggableNode.dragDest?.innerText);
+    if (
+      DraggableNode.dragSrc &&
+      DraggableNode.dragDest &&
+      DraggableNode.dragSrc !== DraggableNode.dragDest
+    ) {
+      draggableListEl.insertBefore(
+        DraggableNode.dragSrc,
+        DraggableNode.dragDest
+      );
+
+      draggableListEl.insertBefore(
+        DraggableNode.dragDest,
+        DraggableNode.dragSrc
+      );
+    }
   }
 }
 
+const draggableListEl = document.getElementById(
+  "draggable-list"
+)! as HTMLUListElement;
+
 const draggableLiElList = document.querySelectorAll(
   "#draggable-list li"
-) as NodeListOf<HTMLLIElement>;
+)! as NodeListOf<HTMLLIElement>;
 
 draggableLiElList.forEach((node) => {
   new DraggableNode(node);
