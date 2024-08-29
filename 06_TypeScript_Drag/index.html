@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #draggable-list {
+        width: 250px;
+      }
+      #draggable-list li {
+        list-style: none;
+        margin-bottom: 1rem;
+        height: 2rem;
+        background-color: aquamarine;
+      }
+      #draggable-list li.dragging {
+        opacity: 0.8;
+        background-color: orangered;
+      }
+    </style>
+    <script src="dist/index.js" defer></script>
+  </head>
+  <body>
+    <h1>드래그 가능한 요소</h1>
+    <ul id="draggable-list">
+      <li draggable="true">1</li>
+      <li draggable="true">2</li>
+      <li draggable="true">3</li>
+      <li draggable="true">4</li>
+      <li draggable="true">5</li>
+      <li draggable="true">6</li>
+    </ul>
+  </body>
+</html>
