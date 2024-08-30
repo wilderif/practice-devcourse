@@ -84,7 +84,9 @@ const draggableLiElList = document.querySelectorAll(
 
 // 생성자 함수를 통해 instance에 eventListener만 달아주는데,
 // counfigure method에서 addEventListener할 때,
-// this binding을 해야하는지
+// this binding을 해야하는지?
+// binding을 하면, this가 Draggable class의 instance를 가르키고,
+// binding 하지 않으면, this가 li element 자체를 가르킴
 draggableLiElList.forEach((node) => {
   new DraggableNode(node);
 });
