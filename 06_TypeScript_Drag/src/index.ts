@@ -82,6 +82,9 @@ const draggableLiElList = document.querySelectorAll(
   "#draggable-list li"
 )! as NodeListOf<HTMLLIElement>;
 
+// 생성자 함수를 통해 instance에 eventListener만 달아주는데,
+// counfigure method에서 addEventListener할 때,
+// this binding을 해야하는지
 draggableLiElList.forEach((node) => {
   new DraggableNode(node);
 });
