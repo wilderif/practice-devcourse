@@ -68,6 +68,9 @@ const InputCon = () => {
         <GroupModal
           onClose={() => setIsModalOpen(false)}
           isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          groups={groups}
+          setGroups={setGroups}
         ></GroupModal>
       )}
 
