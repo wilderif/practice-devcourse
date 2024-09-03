@@ -38,26 +38,28 @@ const GroupModal = ({
 
   return createPortal(
     <dialog className="modal" ref={dialogRef} onClose={onClose}>
-      <button onClick={() => setIsModalOpen(false)}>X</button>
-      <h2>그룹 관리</h2>
-      <ul>
-        {groups.map((group, index) => {
-          return (
-            <li className="group" key={index}>
-              {group}{" "}
-              <button onClick={() => handleRemoveGroup(group)}>X</button>
-            </li>
-          );
-        })}
-      </ul>
-      <div>
-        <input
-          type="text"
-          onChange={(event) => {
-            SetNewGroupInput(event.target.value);
-          }}
-        />
-        <button onClick={() => handleAddGroup(newGroupInput)}>추가</button>
+      <div className="group-modal">
+        <button onClick={() => setIsModalOpen(false)}>X</button>
+        <h2>그룹 관리</h2>
+        <ul>
+          {groups.map((group, index) => {
+            return (
+              <li className="group" key={index}>
+                {group}{" "}
+                <button onClick={() => handleRemoveGroup(group)}>X</button>
+              </li>
+            );
+          })}
+        </ul>
+        <div>
+          <input
+            type="text"
+            onChange={(event) => {
+              SetNewGroupInput(event.target.value);
+            }}
+          />
+          <button onClick={() => handleAddGroup(newGroupInput)}>추가</button>
+        </div>
       </div>
     </dialog>,
     document.getElementById("modal-root")

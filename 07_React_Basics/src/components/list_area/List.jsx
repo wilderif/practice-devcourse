@@ -8,10 +8,10 @@ const List = ({ contact, onDelete, onClickDetail }) => {
 
   return (
     <li>
-      <div>
+      <p>
         {contact.name} {contact.phone} {contact.group}
-      </div>
-      <div>
+      </p>
+      <div className="list-button-container">
         <button
           onClick={() => {
             onClickDetail(contact);

@@ -26,39 +26,53 @@ button {
   background-color: blue;
   color: white;
 
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+
   /* width: 100%; */
 }
 
-.like-btn img {
-  height: 100%;
-  width: 100%;
+h1 {
+  padding-top: 2rem;
+  text-align: center;
 }
 
-/*  */
-
+/* Container */
 .app-container {
   display: flex;
-  background-color: aquamarine;
+
+  padding: 2rem;
 }
 
-/*  */
-
+/* Input Form */
 .input-container {
-  background-color: aqua;
-  width: 50%;
+  background-color: white;
+  width: 40%;
+  padding: 2rem;
+  border-radius: 8px; /* 둥근 모서리 추가 */
+  border: 1px solid gray;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
 }
-
-/*  */
 
 .input-element {
   margin-top: 1rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .input-element input,
 .input-element .select-element {
+  height: 2rem;
   width: 60%;
+  border-radius: 0.2rem;
+  border: 1px solid gray;
+  padding: 0.5rem;
+}
+
+.input-element .select-element {
+  border: none;
+  padding: 0;
 }
 
 .input-element .select-element {
@@ -77,17 +91,31 @@ button {
   color: red;
 }
 
-/*  */
+.input-container > button {
+  width: 100%;
+  margin-top: 1rem;
+}
 
+/* List Area */
 .list-area {
-  width: 50%;
-  background-color: beige;
+  width: 60%;
+  padding: 2rem;
+}
+
+.list-area ul {
+  margin-top: 1rem;
 }
 
 .list-area ul li {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #000;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid lightgray;
+}
+
+.list-area ul li:last-child {
+  border-bottom: none;
 }
 
 .search-container {
@@ -95,8 +123,21 @@ button {
   justify-content: space-between;
 }
 
+.list-area .list-button-container {
+  width: 25%;
+}
+
+.list-area ul li button {
+  width: 50%;
+}
+
 .search-container input {
-  width: 80%;
+  width: 70%;
+  padding: 0.5rem;
+}
+
+.search-container button {
+  width: 25%;
 }
 
 /* Modal */
@@ -109,7 +150,7 @@ button {
   flex-direction: column;
   align-items: center;
   background-color: white;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   border: none;
   padding-top: 2rem;
   width: 50%;
@@ -121,7 +162,15 @@ button {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.modal .group {
-  display: flex;
-  justify-content: space-between;
+.modal > div > button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: red;
+}
+
+.modal .group-modal {
+}
+
+.modal .detail-modal {
 }
