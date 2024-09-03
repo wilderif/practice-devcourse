@@ -25,6 +25,9 @@ const InputCon = () => {
   useEffect(() => {
     const newGroups = getGroupsFromLocalStorage();
     setGroups(newGroups);
+    if (newGroups.length > 0) {
+      setSelectedGroup(newGroups[0]);
+    }
   }, []);
 
   const handleReset = () => {
@@ -97,8 +100,8 @@ const InputCon = () => {
         <SelectEl
           selectedGroup={selectedGroup}
           groups={groups}
-          onChange={(event) => {
-            setSelectedGroup(event.target.value);
+          onChange={(group) => {
+            setSelectedGroup(group);
           }}
           onClickButton={() => setIsModalOpen(true)}
         />

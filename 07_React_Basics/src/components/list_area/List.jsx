@@ -1,6 +1,6 @@
 import { removeContactFromLocalStorage } from "../../util/storage.js";
 
-const List = ({ contact, onDelete }) => {
+const List = ({ contact, onDelete, onClickDetail }) => {
   const handleDelete = () => {
     removeContactFromLocalStorage(contact.phone);
     onDelete();
@@ -12,7 +12,13 @@ const List = ({ contact, onDelete }) => {
         {contact.name} {contact.phone} {contact.group}
       </div>
       <div>
-        <button>세부사항</button>
+        <button
+          onClick={() => {
+            onClickDetail(contact);
+          }}
+        >
+          세부사항
+        </button>
         <button onClick={handleDelete}>삭제</button>
       </div>
     </li>
