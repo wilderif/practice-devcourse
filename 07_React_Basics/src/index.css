@@ -21,6 +21,10 @@ button {
   margin: 0;
   box-shadow: none;
   cursor: pointer;
+
+  text-align: center;
+  background-color: red;
+  /* width: 100%; */
 }
 
 .like-btn img {
@@ -39,10 +43,32 @@ button {
 
 .input-container {
   background-color: aqua;
+  width: 30%;
 }
 
 /*  */
 
 .list-area {
   background-color: beige;
+}
+
+/*  */
+
+.input-element {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-element input,
+.input-element .select-element {
+  width: 60%;
+}
+
+.input-element .select-element {
+  display: flex;
+}
+
+.input-element .select-element select {
+  width: 50%;
 }
