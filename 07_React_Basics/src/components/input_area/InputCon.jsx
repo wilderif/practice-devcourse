@@ -2,6 +2,7 @@ import { useState } from "react";
 import InputEl from "./InputEl.jsx";
 import SelectEl from "./SelectEl.jsx";
 import { isKoreanName, isPhoneNumber } from "../../util/validation.js";
+import { saveContactToLocalStorage } from "../../util/storage.js";
 
 const InputCon = () => {
   const [name, setName] = useState("");
@@ -44,6 +45,7 @@ const InputCon = () => {
 
     if (formIsValid) {
       console.log("Form Submitted:", { name, phone, group, note });
+      saveContactToLocalStorage(name, phone, group, note);
       handleReset();
     }
   };
