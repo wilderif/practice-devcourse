@@ -12,3 +12,8 @@ export const saveContactToLocalStorage = (name, phone, group, note) => {
 };
 
 // 그룹 업데이트 로직 추가할 것
+
+export const getContactsFromLocalStorage = () => {
+  // 로컬 스토리지에서 'contactList' 데이터를 가져옴 (없으면 빈 배열 반환)
+  return JSON.parse(localStorage.getItem("contactList")) || [];
+};

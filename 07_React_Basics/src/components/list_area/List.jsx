@@ -1,7 +1,9 @@
-const List = () => {
+const List = ({ contact }) => {
   return (
     <li>
-      <div>data</div>
+      <div>
+        {contact.name} {contact.phone} {contact.group}
+      </div>
       <div>
         <button>세부사항</button>
         <button>삭제</button>

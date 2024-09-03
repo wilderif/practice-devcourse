@@ -23,7 +23,9 @@ button {
   cursor: pointer;
 
   text-align: center;
-  background-color: red;
+  background-color: blue;
+  color: white;
+
   /* width: 100%; */
 }
 
@@ -36,13 +38,14 @@ button {
 
 .app-container {
   display: flex;
+  background-color: aquamarine;
 }
 
 /*  */
 
 .input-container {
   background-color: aqua;
-  width: 30%;
+  width: 50%;
 }
 
 /*  */
@@ -77,6 +80,7 @@ button {
 /*  */
 
 .list-area {
+  width: 50%;
   background-color: beige;
 }
 
