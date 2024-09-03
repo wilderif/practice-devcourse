@@ -1,13 +1,12 @@
+import SearchCon from "./SearchCon.jsx";
+import List from "./List.jsx";
+
 const ListArea = () => {
   return (
     <div className="list-area">
-      <div>검색</div>
+      <SearchCon />
       <ul>
-        <li>전화번호</li>
-        <li>전화번호</li>
-        <li>전화번호</li>
-        <li>전화번호</li>
-        <li>전화번호</li>
+        <List></List>
       </ul>
     </div>
   );

@@ -36,7 +36,6 @@ button {
 
 .app-container {
   display: flex;
-  justify-content: space-between;
 }
 
 /*  */
@@ -44,12 +43,6 @@ button {
 .input-container {
   background-color: aqua;
   width: 30%;
-}
-
-/*  */
-
-.list-area {
-  background-color: beige;
 }
 
 /*  */
@@ -79,4 +72,25 @@ button {
 
 .control-error {
   color: red;
+}
+
+/*  */
+
+.list-area {
+  background-color: beige;
+}
+
+.list-area ul li {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #000;
+}
+
+.search-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-container input {
+  width: 80%;
 }
