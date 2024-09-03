@@ -1,5 +1,11 @@
 // group정보를 localStorage에서 가져와서 사용하도록 수정
-const SelectEl = ({ onChange, onAddGroup, groups, selectedGroup }) => {
+const SelectEl = ({
+  onChange,
+
+  onClickButton,
+  groups,
+  selectedGroup,
+}) => {
   const handleSelectChange = (event) => {
     const newGroup = event.target.value;
     onChange(newGroup);
@@ -22,7 +28,7 @@ const SelectEl = ({ onChange, onAddGroup, groups, selectedGroup }) => {
             );
           })}
         </select>
-        <button type="button" onClick={onAddGroup}>
+        <button type="button" onClick={onClickButton}>
           조직 추가
         </button>
       </div>

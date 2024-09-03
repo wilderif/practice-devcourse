@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+
 import InputEl from "./InputEl.jsx";
 import SelectEl from "./SelectEl.jsx";
+import GroupModal from "./GroupModal.jsx";
+
 import { isKoreanName, isPhoneNumber } from "../../util/validation.js";
 import {
   saveContactToLocalStorage,
@@ -17,6 +20,7 @@ const InputCon = () => {
     name: "",
     phone: "",
   });
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const newGroups = getGroupsFromLocalStorage();
@@ -59,35 +63,50 @@ const InputCon = () => {
   };
 
   return (
-    <form className="input-container" onSubmit={(event) => handleSubmit(event)}>
-      <InputEl
-        inputType={"이름"}
-        value={name}
-        onChange={(event) => setName(event.target.value)}
-      />
-      <div className="control-error">{errors.name && <p>{errors.name}</p>}</div>
-      <InputEl
-        inputType={"전화번호"}
-        value={phone}
-        onChange={(event) => setPhone(event.target.value)}
-      />
-      <div className="control-error">
-        {errors.phone && <p>{errors.phone}</p>}
-      </div>
-      <SelectEl
-        selectedGroup={selectedGroup}
-        groups={groups}
-        onChange={() => {
-          setSelectedGroup(event.target.value);
-        }}
-      />
-      <InputEl
-        inputType={"간단한 기록"}
-        value={note}
-        onChange={(event) => setNote(event.target.value)}
-      />
-      <button type="submit">저장</button>
-    </form>
+    <>
+      {isModalOpen && (
+        <GroupModal
+          onClose={() => setIsModalOpen(false)}
+          isModalOpen={isModalOpen}
+        ></GroupModal>
+      )}
+
+      <form
+        className="input-container"
+        onSubmit={(event) => handleSubmit(event)}
+      >
+        <InputEl
+          inputType={"이름"}
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+        />
+        <div className="control-error">
+          {errors.name && <p>{errors.name}</p>}
+        </div>
+        <InputEl
+          inputType={"전화번호"}
+          value={phone}
+          onChange={(event) => setPhone(event.target.value)}
+        />
+        <div className="control-error">
+          {errors.phone && <p>{errors.phone}</p>}
+        </div>
+        <SelectEl
+          selectedGroup={selectedGroup}
+          groups={groups}
+          onChange={(event) => {
+            setSelectedGroup(event.target.value);
+          }}
+          onClickButton={() => setIsModalOpen(true)}
+        />
+        <InputEl
+          inputType={"간단한 기록"}
+          value={note}
+          onChange={(event) => setNote(event.target.value)}
+        />
+        <button type="submit">저장</button>
+      </form>
+    </>
   );
 };
 
