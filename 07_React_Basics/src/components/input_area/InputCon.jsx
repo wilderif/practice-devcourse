@@ -1,23 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InputEl from "./InputEl.jsx";
 import SelectEl from "./SelectEl.jsx";
 import { isKoreanName, isPhoneNumber } from "../../util/validation.js";
-import { saveContactToLocalStorage } from "../../util/storage.js";
+import {
+  saveContactToLocalStorage,
+  getGroupsFromLocalStorage,
+} from "../../util/storage.js";
 
 const InputCon = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [group, setGroup] = useState("가족");
+  const [groups, setGroups] = useState([]);
+  const [selectedGroup, setSelectedGroup] = useState(groups[0]);
   const [note, setNote] = useState("");
   const [errors, setErrors] = useState({
     name: "",
     phone: "",
   });
 
+  useEffect(() => {
+    const newGroups = getGroupsFromLocalStorage();
+    setGroups(newGroups);
+  }, []);
+
   const handleReset = () => {
     setName("");
     setPhone("");
-    setGroup("가족");
+    setSelectedGroup(groups[0]);
     setNote("");
     setErrors({
       name: "",
@@ -44,8 +53,7 @@ const InputCon = () => {
     setErrors(newErrors);
 
     if (formIsValid) {
-      console.log("Form Submitted:", { name, phone, group, note });
-      saveContactToLocalStorage(name, phone, group, note);
+      saveContactToLocalStorage(name, phone, selectedGroup, note);
       handleReset();
     }
   };
@@ -67,8 +75,11 @@ const InputCon = () => {
         {errors.phone && <p>{errors.phone}</p>}
       </div>
       <SelectEl
-        value={group}
-        onChange={(event) => setGroup(event.target.value)}
+        selectedGroup={selectedGroup}
+        groups={groups}
+        onChange={() => {
+          setSelectedGroup(event.target.value);
+        }}
       />
       <InputEl
         inputType={"간단한 기록"}
