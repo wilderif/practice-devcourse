@@ -4,10 +4,13 @@ import ListArea from "./components/list_area/ListArea.jsx";
 
 function App() {
   return (
-    <div className="app-container">
-      <InputCon />
-      <ListArea />
-    </div>
+    <>
+      <h1>연락처 리스트</h1>
+      <div className="app-container">
+        <InputCon />
+        <ListArea />
+      </div>
+    </>
   );
 }
 

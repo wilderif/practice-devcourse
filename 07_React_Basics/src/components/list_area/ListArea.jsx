@@ -8,20 +8,27 @@ import { getContactsFromLocalStorage } from "../../util/storage.js";
 const ListArea = () => {
   const [contacts, setContacts] = useState([]);
 
-  useEffect(() => {
-    // 유틸리티 함수를 사용하여 로컬 스토리지에서 연락처 데이터를 가져옴
+  const updateContacts = () => {
     const storedContacts = getContactsFromLocalStorage();
     setContacts(storedContacts);
-  }, []);
+  };
 
-  console.log(contacts);
+  useEffect(() => {
+    updateContacts();
+  }, []);
 
   return (
     <div className="list-area">
-      <SearchCon />
+      <SearchCon handleUpdate={updateContacts} />
       <ul>
         {contacts.map((contact, index) => {
-          return <List key={index} contact={contact}></List>;
+          return (
+            <List
+              key={index}
+              contact={contact}
+              onDelete={updateContacts}
+            ></List>
+          );
         })}
       </ul>
     </div>
