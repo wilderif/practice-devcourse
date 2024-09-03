@@ -72,3 +72,11 @@ button {
 .input-element .select-element select {
   width: 50%;
 }
+
+.input-element .select-element button {
+  width: 50%;
+}
+
+.control-error {
+  color: red;
+}

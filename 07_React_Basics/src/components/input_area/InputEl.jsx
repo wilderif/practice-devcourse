@@ -1,8 +1,13 @@
-const InputEl = ({ inputType }) => {
+const InputEl = ({ inputType, value, onChange }) => {
   return (
     <div className="input-element">
-      <p>{inputType}</p>
-      <input type="text" placeholder={inputType} />
+      <label>{inputType}</label>
+      <input
+        type="text"
+        value={value}
+        onChange={onChange}
+        placeholder={inputType}
+      />
     </div>
   );
 };
